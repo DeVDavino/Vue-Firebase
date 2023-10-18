@@ -1,6 +1,7 @@
 import { projectStorage } from "@/firebase/config";
 import { ref } from 'vue';
 
+// pass the getUser function from the getUser compsable to get the userId, from the user that is currently logged in 
 const { user } = getUser();
 
 const useStorage = () => {
