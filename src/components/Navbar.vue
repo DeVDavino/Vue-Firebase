@@ -2,7 +2,7 @@
     <div class="navbar">
         <nav>
             <router-link :to="{name: 'home'}"><img src="@/assets/userIcon.jpg" alt="logo"></router-link>
-            <h1><router-link :to="{name: 'home'}"><p>DaviTech</p></router-link></h1>
+            <h1><router-link :to="{name: 'home'}"><p>Davino Rosaria</p></router-link></h1>
             <div class="links">
                 <div v-if="user">
                     <button @click="handleClick">Logout</button>

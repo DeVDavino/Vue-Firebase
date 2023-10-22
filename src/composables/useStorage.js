@@ -1,5 +1,6 @@
 import { projectStorage } from "@/firebase/config";
 import { ref } from 'vue';
+import getUser from '@/composables/getUser'
 
 // pass the getUser function from the getUser compsable to get the userId, from the user that is currently logged in 
 const { user } = getUser();
@@ -17,7 +18,7 @@ const useStorage = () => {
             // pass the selected file through the storage method
             const res = await storageRef.put(file);
             // save the downloadable url in the url ref function
-            url.value = res.ref.getDownloadURL();
+            url.value = await res.ref.getDownloadURL();
         } catch (error) {
             // log the error message
             console.log(error.message);
@@ -26,7 +27,7 @@ const useStorage = () => {
         }
     }
 
-    return { error, url, filePath , uploadImage }
+    return { error, url, filePath , uploadImage, getUser }
 }
 
 export default useStorage;

@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { projectFirestore } from '../firebase/config'
-import { is } from 'core-js/core/object'
+
 
 const useCollection = (collection) => {
 
