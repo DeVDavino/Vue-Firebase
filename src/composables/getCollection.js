@@ -1,6 +1,7 @@
 import { ref, watchEffect } from 'vue'
 import { projectFirestore } from '../firebase/config'
 
+// Set up a generic function to get a collection
 const getCollection = (collection) => {
 
   const documents = ref(null)

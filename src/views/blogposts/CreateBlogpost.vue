@@ -1,17 +1,21 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <h4>Create New Blogpost</h4>
-    <input class="input" type="text" required placeholder="Blogpost title" v-model="title">
-    <textarea class="input" required placeholder="Blogpost description..." v-model="description"></textarea>
-    <!-- upload blogpost image -->
-    <label>Upload blogpost cover image</label>
-    <input class="input" type="file" @change="handleChange">
-    <div class="error"> {{ fileError }}</div>
+  <div class="wrapper">
+    <form @submit.prevent="handleSubmit">
+        <h4>Create New Blogpost</h4>
+        <input class="input" type="text" required placeholder="Blogpost title" v-model="title">
+        <textarea class="input" required placeholder="Blogpost description..." v-model="description"></textarea>
+        <!-- upload blogpost image -->
+        <label>Upload blogpost cover image</label>
+        <input class="input" type="file" @change="handleChange">
+        <div class="error"> {{ fileError }}</div>
 
-    <div class="error"></div>
-    <button v-if="!isPending">Create</button>
-    <button v-else disabled>Saving...</button>
-  </form>
+        <div class="error"></div>
+        <button v-if="!isPending">Create</button>
+        <button v-else disabled>Saving...</button>
+    </form>
+
+  </div>  <!-- prevent default action -->
+  
 </template>
 
 <script>
@@ -25,7 +29,8 @@ export default {
     setup(){
 
         const {filePath , url, uploadImage } = useStorage();
-        const { error, addDoc } = useCollection('blogpost');
+        // firebase will create a collection if it doesn't exist
+        const { error, addDoc } = useCollection('posts');
         const { user } = getUser();
 
         const title = ref('');
@@ -47,12 +52,12 @@ export default {
                     userName: user.value.displayName,
                     coverUrl: url.value,
                     filePath: filePath.value,
-                    blogposts: [],
+                    postInfo: [],
                     createdAt: timestamp(),
                 })
                 isPending.value = false;
                 if(!error.value){
-                    console.log('blogpost added')
+                    console.log('post added')
                 }
             }
             
@@ -85,6 +90,9 @@ export default {
 
 <style scoped>
 
+    .wrapper{
+        padding-top: 160px; /* Adjust this to match the height of your navbar */
+    }
     .input{
     border-bottom: 1px solid 	#D3D3D3;
     }

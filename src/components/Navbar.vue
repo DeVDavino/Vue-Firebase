@@ -50,6 +50,10 @@
         padding: 10px 10px;
         margin-bottom: 60px;
         background: #0e0e0e;
+        position: fixed; /* Change this from absolute to fixed */
+        width: 100%;
+        z-index: 1;
+        top: 0; /* Add this to stick the navbar at the top of the page */
        
     }
 
