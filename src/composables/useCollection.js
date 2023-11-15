@@ -13,8 +13,11 @@ const useCollection = (collection) => {
     isPending.value = true
 
     try {
-      await projectFirestore.collection(collection).add(doc)
+      // save the doc into res variable
+      const res = await projectFirestore.collection(collection).add(doc)
       isPending.value = false
+      // return the res variable, with the doc id
+      return res
     }
     catch(err) {
       console.log(err.message)

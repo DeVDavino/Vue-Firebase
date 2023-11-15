@@ -5,6 +5,7 @@
             <h1><router-link :to="{name: 'home'}"><p>Davino Rosaria</p></router-link></h1>
             <div class="links">
                 <div v-if="user">
+                    <router-link class="link" :to="{ name: 'CreateBlogPost'}">Create Blogpost</router-link>
                     <button @click="handleClick">Logout</button>
                 </div>
                 <div v-else>
@@ -45,6 +46,16 @@
 </script>
 
 <style scoped>
+
+    .link{
+        color: white;
+        transition: all ease 0.2s;
+    }
+
+    .link:hover{
+        transform: scale(1.05);
+        transition: all ease 0.2s;
+    }
 
     .navbar{
         padding: 10px 10px;

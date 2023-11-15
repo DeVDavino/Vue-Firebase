@@ -27,6 +27,7 @@ const getCollection = (collection) => {
     error.value = 'could not fetch the data'
   })
 
+  // watchEffect is a function that runs when the component is mounted
   watchEffect((onInvalidate) => {
     onInvalidate(() => unsub());
   });

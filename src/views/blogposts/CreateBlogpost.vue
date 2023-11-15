@@ -24,6 +24,9 @@ import useStorage from '@/composables/useStorage'
 import useCollection from '@/composables/useCollection';
 import getUser from '@/composables/getUser';
 import { timestamp } from '@/firebase/config';
+// route instance
+import { useRouter } from 'vue-router';
+import router from '@/router';
 
 export default {
     setup(){
@@ -32,6 +35,9 @@ export default {
         // firebase will create a collection if it doesn't exist
         const { error, addDoc } = useCollection('posts');
         const { user } = getUser();
+
+        // route instance
+        const router = useRouter();
 
         const title = ref('');
         const description = ref('');
@@ -45,7 +51,7 @@ export default {
                 isPending.value = true
                 await uploadImage(file.value);
                 console.log('image uploaded, url: ', url.value);
-                await addDoc({
+                const res = await addDoc({
                     title: title.value,
                     description: description.value,
                     userId: user.value.uid,
@@ -57,7 +63,7 @@ export default {
                 })
                 isPending.value = false;
                 if(!error.value){
-                    console.log('post added')
+                    router.push({name: 'BlogpostDetails', params: {id: res.id}})
                 }
             }
             
