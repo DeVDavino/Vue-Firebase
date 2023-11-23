@@ -11,6 +11,11 @@
       </div>
     </div>
   </div>
+
+  <div class="h">
+    <Hero />
+  </div>
+
   <div class="home">
     <!-- data bind collection to the documents and display it's content.  -->
     <ListView v-if="documents" :posts="documents" />
@@ -23,11 +28,13 @@
 <script>
 import getCollection from '@/composables/getCollection'
 import ListView from '@/components/ListView.vue'
+import Hero from '@/components/Hero.vue'
 
   export default {
     name: 'Home',
     components: {
-      ListView
+      ListView,
+      Hero,
     },
 
     setup(){
